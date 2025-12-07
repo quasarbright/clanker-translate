@@ -88,7 +88,7 @@ Clanker Translate is a client-side AI-powered translation application that provi
 1. WHEN a User first accesses the application without a stored API key THEN the System SHALL display an API key entry screen and SHALL NOT show the translation interface
 2. WHEN a User enters an API key THEN the System SHALL store the key in Local Storage
 3. WHEN a User returns to the application with a stored API key THEN the System SHALL automatically load the key and display the translation interface
-4. WHEN a User wants to change their API key THEN the System SHALL provide a settings option to update the stored key
+4. WHEN a User wants to clear their API key THEN the System SHALL provide a settings option to clear the stored key and return to the API key entry screen
 5. WHEN storing API keys THEN the System SHALL use Local Storage and SHALL NOT use cookies or send keys to any server except OpenRouter for authentication
 
 ### Requirement 7: Language Selection
@@ -157,7 +157,7 @@ Clanker Translate is a client-side AI-powered translation application that provi
 #### Acceptance Criteria
 
 1. WHEN a User views the application THEN the System SHALL provide access to a settings interface
-2. WHEN a User accesses settings THEN the System SHALL display options for API key management and model selection
+2. WHEN a User accesses settings THEN the System SHALL display options for clearing the API key and model selection
 3. WHEN the settings interface is displayed THEN the System SHALL show the current model selection
 4. WHEN a User updates settings THEN the System SHALL persist changes to Local Storage
 5. WHEN a User closes settings THEN the System SHALL return to the translation interface with updated configuration

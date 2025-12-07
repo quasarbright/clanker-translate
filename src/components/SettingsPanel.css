@@ -1,0 +1,157 @@
+.settings-panel {
+  position: relative;
+}
+
+.settings-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #2d2d2d;
+  color: #e5e5e5;
+  border: 1px solid #3d3d3d;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.settings-toggle:hover {
+  background-color: #3d3d3d;
+  border-color: #3b82f6;
+}
+
+.settings-toggle:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.settings-icon {
+  font-size: 1.25rem;
+}
+
+.settings-content {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 300px;
+  background-color: #1a1a1a;
+  border: 1px solid #3d3d3d;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.settings-section {
+  margin-bottom: 1.5rem;
+}
+
+.settings-section:last-child {
+  margin-bottom: 0;
+}
+
+.clear-api-key-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.clear-api-key-button:hover {
+  background-color: #b91c1c;
+}
+
+.clear-api-key-button:focus {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.3);
+}
+
+.clear-api-key-button:active {
+  background-color: #991b1b;
+}
+
+.clear-all-data-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #7c2d12;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.clear-all-data-button:hover {
+  background-color: #9a3412;
+}
+
+.clear-all-data-button:focus {
+  outline: 2px solid #7c2d12;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(124, 45, 18, 0.3);
+}
+
+.clear-all-data-button:active {
+  background-color: #6c2410;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .settings-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    min-width: auto;
+    max-width: calc(100vw - 2rem);
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .settings-toggle {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem;
+    border: none;
+    background-color: transparent;
+  }
+
+  .settings-toggle:hover {
+    background-color: transparent;
+    border: none;
+  }
+
+  .settings-toggle:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .settings-text {
+    display: none;
+  }
+
+  .settings-icon {
+    font-size: 1.5rem;
+  }
+
+  .clear-api-key-button,
+  .clear-all-data-button {
+    min-height: 44px;
+  }
+}

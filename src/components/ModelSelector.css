@@ -1,0 +1,128 @@
+.model-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.model-label {
+  font-size: 0.875rem;
+  color: #a3a3a3;
+  font-weight: 500;
+}
+
+.model-selector-container {
+  position: relative;
+}
+
+.model-search-input {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1a1a1a;
+  color: #e5e5e5;
+  border: 1px solid #3d3d3d;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.model-search-input::placeholder {
+  color: #6b6b6b;
+}
+
+.model-search-input:hover {
+  border-color: #3b82f6;
+}
+
+.model-search-input:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.model-dropdown-list {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  right: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: #1a1a1a;
+  border: 1px solid #3d3d3d;
+  border-radius: 4px;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.model-dropdown-item {
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-bottom: 1px solid #2d2d2d;
+}
+
+.model-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.model-dropdown-item:hover {
+  background-color: #2d2d2d;
+}
+
+.model-dropdown-item.selected {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.model-dropdown-item.selected:hover {
+  background-color: #2563eb;
+}
+
+.model-dropdown-item.no-results {
+  color: #a3a3a3;
+  cursor: default;
+  text-align: center;
+}
+
+.model-dropdown-item.no-results:hover {
+  background-color: transparent;
+}
+
+.model-name {
+  font-weight: 500;
+  color: #e5e5e5;
+  margin-bottom: 0.25rem;
+}
+
+.model-dropdown-item.selected .model-name {
+  color: white;
+}
+
+.model-description {
+  font-size: 0.875rem;
+  color: #a3a3a3;
+  line-height: 1.4;
+}
+
+.model-dropdown-item.selected .model-description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Scrollbar styling for dropdown */
+.model-dropdown-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.model-dropdown-list::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.model-dropdown-list::-webkit-scrollbar-thumb {
+  background: #3d3d3d;
+  border-radius: 4px;
+}
+
+.model-dropdown-list::-webkit-scrollbar-thumb:hover {
+  background: #4d4d4d;
+}

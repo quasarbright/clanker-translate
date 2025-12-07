@@ -1,0 +1,55 @@
+.input-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: #2d2d2d;
+  border-radius: 8px;
+}
+
+.input-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-label {
+  font-size: 0.875rem;
+  color: #a3a3a3;
+  font-weight: 500;
+}
+
+.character-counter {
+  font-size: 0.875rem;
+  color: #a3a3a3;
+}
+
+.input-textarea {
+  min-height: 150px;
+  padding: 0.75rem;
+  background-color: #1a1a1a;
+  color: #e5e5e5;
+  border: 1px solid #3d3d3d;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.input-textarea::placeholder {
+  color: #6b6b6b;
+}
+
+.input-textarea:hover {
+  border-color: #3b82f6;
+}
+
+.input-textarea:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+

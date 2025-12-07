@@ -68,7 +68,7 @@ graph TD
 - **Methods**:
   - `loadSettings()`: Load API key and preferences from Local Storage
   - `handleApiKeySubmit(key: string)`: Validate and store API key
-  - `handleLogout()`: Clear API key and return to gate
+  - `handleClearApiKey()`: Clear API key and return to gate (called from settings)
 
 #### ApiKeyGate Component
 - **Responsibility**: Prompt user for API key before allowing access
@@ -153,7 +153,7 @@ graph TD
   - `selectedModel: string`
   - `availableModels: Model[]`
   - `onModelChange: (model: string) => void`
-  - `onLogout: () => void`
+  - `onClearApiKey: () => void`
 - **State**:
   - `isOpen: boolean`
 - **Methods**:

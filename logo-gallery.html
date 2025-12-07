@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clanker Translate - Logo Options</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #e5e5e5;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      color: #3b82f6;
+    }
+    
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .logo-card {
+      background: #2d2d2d;
+      border: 1px solid #3d3d3d;
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .logo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+      border-color: #3b82f6;
+    }
+    
+    .logo-container {
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    
+    .logo-container svg {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    
+    .logo-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #3b82f6;
+      text-align: center;
+    }
+    
+    .logo-description {
+      font-size: 0.9rem;
+      color: #a3a3a3;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Clanker Translate - Logo Options</h1>
+  
+  <div class="gallery">
+    <!-- Logo 1: Globe with Arrows -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#3b82f6" stroke-width="4"/>
+          <ellipse cx="100" cy="100" rx="30" ry="70" fill="none" stroke="#3b82f6" stroke-width="3"/>
+          <line x1="30" y1="100" x2="170" y2="100" stroke="#3b82f6" stroke-width="3"/>
+          <line x1="100" y1="30" x2="100" y2="170" stroke="#3b82f6" stroke-width="3"/>
+          <path d="M 60 60 L 40 40 M 40 40 L 50 35 M 40 40 L 35 50" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+          <path d="M 140 140 L 160 160 M 160 160 L 150 165 M 160 160 L 165 150" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-name">Globe Exchange</div>
+      <div class="logo-description">Classic globe with translation arrows</div>
+    </div>
+
+    <!-- Logo 2: Speech Bubbles -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 40 60 Q 40 40 60 40 L 100 40 Q 120 40 120 60 L 120 90 Q 120 110 100 110 L 70 110 L 60 125 L 60 110 L 60 110 Q 40 110 40 90 Z" fill="#3b82f6"/>
+          <text x="80" y="80" font-size="24" fill="white" font-weight="bold" text-anchor="middle">A</text>
+          
+          <path d="M 80 90 Q 80 70 100 70 L 140 70 Q 160 70 160 90 L 160 120 Q 160 140 140 140 L 110 140 L 100 155 L 100 140 L 100 140 Q 80 140 80 120 Z" fill="#10b981"/>
+          <text x="120" y="110" font-size="24" fill="white" font-weight="bold" text-anchor="middle">あ</text>
+        </svg>
+      </div>
+      <div class="logo-name">Speech Bubbles</div>
+      <div class="logo-description">Overlapping chat bubbles with different scripts</div>
+    </div>
+
+    <!-- Logo 3: Book with Languages -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="50" y="40" width="100" height="120" rx="5" fill="#2d2d2d" stroke="#3b82f6" stroke-width="4"/>
+          <line x1="100" y1="40" x2="100" y2="160" stroke="#3b82f6" stroke-width="3"/>
+          <text x="75" y="80" font-size="20" fill="#3b82f6" font-weight="bold" text-anchor="middle">EN</text>
+          <text x="125" y="80" font-size="20" fill="#10b981" font-weight="bold" text-anchor="middle">日本</text>
+          <line x1="60" y1="100" x2="90" y2="100" stroke="#3b82f6" stroke-width="2"/>
+          <line x1="60" y1="115" x2="90" y2="115" stroke="#3b82f6" stroke-width="2"/>
+          <line x1="110" y1="100" x2="140" y2="100" stroke="#10b981" stroke-width="2"/>
+          <line x1="110" y1="115" x2="140" y2="115" stroke="#10b981" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="logo-name">Translation Book</div>
+      <div class="logo-description">Open book showing two languages</div>
+    </div>
+
+    <!-- Logo 4: Letter Transform -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <text x="50" y="110" font-size="60" fill="#3b82f6" font-weight="bold">A</text>
+          <path d="M 90 90 L 110 100 L 90 110" fill="#10b981"/>
+          <path d="M 95 100 L 105 100" stroke="#10b981" stroke-width="3"/>
+          <text x="120" y="110" font-size="60" fill="#10b981" font-weight="bold">あ</text>
+        </svg>
+      </div>
+      <div class="logo-name">Letter Transform</div>
+      <div class="logo-description">Simple letter-to-letter transformation</div>
+    </div>
+
+    <!-- Logo 5: Circular Flow -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="60" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="10 5"/>
+          <path d="M 160 100 Q 180 100 180 120 L 180 140 Q 180 160 160 160 L 140 160" fill="none" stroke="#10b981" stroke-width="4"/>
+          <path d="M 140 160 L 150 155 M 140 160 L 145 170" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+          <text x="100" y="85" font-size="24" fill="#3b82f6" font-weight="bold" text-anchor="middle">EN</text>
+          <text x="100" y="120" font-size="24" fill="#10b981" font-weight="bold" text-anchor="middle">ES</text>
+        </svg>
+      </div>
+      <div class="logo-name">Circular Flow</div>
+      <div class="logo-description">Continuous translation cycle</div>
+    </div>
+
+    <!-- Logo 6: Bridge -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 30 120 Q 100 60 170 120" fill="none" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="30" cy="120" r="15" fill="#3b82f6"/>
+          <circle cx="170" cy="120" r="15" fill="#10b981"/>
+          <text x="30" y="127" font-size="16" fill="white" font-weight="bold" text-anchor="middle">A</text>
+          <text x="170" y="127" font-size="16" fill="white" font-weight="bold" text-anchor="middle">Z</text>
+          <line x1="30" y1="135" x2="30" y2="160" stroke="#3b82f6" stroke-width="3"/>
+          <line x1="170" y1="135" x2="170" y2="160" stroke="#10b981" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="logo-name">Language Bridge</div>
+      <div class="logo-description">Bridge connecting two languages</div>
+    </div>
+
+    <!-- Logo 7: Hexagon Network -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="100,40 140,65 140,115 100,140 60,115 60,65" fill="none" stroke="#3b82f6" stroke-width="4"/>
+          <circle cx="100" cy="90" r="25" fill="#3b82f6"/>
+          <text x="100" y="100" font-size="24" fill="white" font-weight="bold" text-anchor="middle">T</text>
+          <circle cx="70" cy="70" r="8" fill="#10b981"/>
+          <circle cx="130" cy="70" r="8" fill="#10b981"/>
+          <circle cx="70" cy="110" r="8" fill="#10b981"/>
+          <circle cx="130" cy="110" r="8" fill="#10b981"/>
+          <line x1="100" y1="90" x2="70" y2="70" stroke="#10b981" stroke-width="2"/>
+          <line x1="100" y1="90" x2="130" y2="70" stroke="#10b981" stroke-width="2"/>
+          <line x1="100" y1="90" x2="70" y2="110" stroke="#10b981" stroke-width="2"/>
+          <line x1="100" y1="90" x2="130" y2="110" stroke="#10b981" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="logo-name">Translation Network</div>
+      <div class="logo-description">Connected translation hub</div>
+    </div>
+
+    <!-- Logo 8: Dual Arrows -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 40 80 L 120 80" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+          <path d="M 110 70 L 130 80 L 110 90" fill="#3b82f6"/>
+          <path d="M 160 120 L 80 120" stroke="#10b981" stroke-width="6" stroke-linecap="round"/>
+          <path d="M 90 110 L 70 120 L 90 130" fill="#10b981"/>
+          <circle cx="40" cy="80" r="20" fill="#3b82f6"/>
+          <circle cx="160" cy="120" r="20" fill="#10b981"/>
+          <text x="40" y="88" font-size="18" fill="white" font-weight="bold" text-anchor="middle">A</text>
+          <text x="160" y="128" font-size="18" fill="white" font-weight="bold" text-anchor="middle">B</text>
+        </svg>
+      </div>
+      <div class="logo-name">Bidirectional</div>
+      <div class="logo-description">Two-way translation arrows</div>
+    </div>
+
+    <!-- Logo 9: Puzzle Pieces -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 50 70 L 90 70 Q 95 70 95 75 L 95 85 Q 95 90 100 90 Q 105 90 105 85 L 105 75 Q 105 70 110 70 L 150 70 L 150 130 L 110 130 Q 105 130 105 125 L 105 115 Q 105 110 100 110 Q 95 110 95 115 L 95 125 Q 95 130 90 130 L 50 130 Z" fill="#3b82f6"/>
+          <text x="75" y="105" font-size="20" fill="white" font-weight="bold" text-anchor="middle">EN</text>
+          <text x="125" y="105" font-size="20" fill="white" font-weight="bold" text-anchor="middle">FR</text>
+        </svg>
+      </div>
+      <div class="logo-name">Puzzle Connect</div>
+      <div class="logo-description">Languages fitting together</div>
+    </div>
+
+    <!-- Logo 10: Minimalist CT -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 140 60 Q 100 60 100 100 Q 100 140 140 140" fill="none" stroke="#3b82f6" stroke-width="8" stroke-linecap="round"/>
+          <line x1="80" y1="60" x2="80" y2="140" stroke="#10b981" stroke-width="8" stroke-linecap="round"/>
+          <line x1="60" y1="60" x2="100" y2="60" stroke="#10b981" stroke-width="8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-name">CT Monogram</div>
+      <div class="logo-description">Clean C+T lettermark</div>
+    </div>
+
+    <!-- Logo 11: World Languages -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="65" fill="#3b82f6"/>
+          <text x="100" y="75" font-size="18" fill="white" font-weight="bold" text-anchor="middle">Hello</text>
+          <text x="100" y="100" font-size="18" fill="white" font-weight="bold" text-anchor="middle">Hola</text>
+          <text x="100" y="125" font-size="18" fill="white" font-weight="bold" text-anchor="middle">こんにちは</text>
+          <circle cx="100" cy="100" r="65" fill="none" stroke="#10b981" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="logo-name">World Languages</div>
+      <div class="logo-description">Multiple languages in a circle</div>
+    </div>
+
+    <!-- Logo 12: Gear Translation -->
+    <div class="logo-card">
+      <div class="logo-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="50" fill="#3b82f6"/>
+          <circle cx="100" cy="100" r="35" fill="#1a1a1a"/>
+          <rect x="95" y="40" width="10" height="20" fill="#3b82f6" rx="2"/>
+          <rect x="95" y="140" width="10" height="20" fill="#3b82f6" rx="2"/>
+          <rect x="40" y="95" width="20" height="10" fill="#3b82f6" rx="2"/>
+          <rect x="140" y="95" width="20" height="10" fill="#3b82f6" rx="2"/>
+          <rect x="60" y="60" width="15" height="15" fill="#3b82f6" rx="2" transform="rotate(45 67.5 67.5)"/>
+          <rect x="125" y="125" width="15" height="15" fill="#3b82f6" rx="2" transform="rotate(45 132.5 132.5)"/>
+          <rect x="125" y="60" width="15" height="15" fill="#3b82f6" rx="2" transform="rotate(45 132.5 67.5)"/>
+          <rect x="60" y="125" width="15" height="15" fill="#3b82f6" rx="2" transform="rotate(45 67.5 132.5)"/>
+          <text x="100" y="110" font-size="28" fill="#10b981" font-weight="bold" text-anchor="middle">T</text>
+        </svg>
+      </div>
+      <div class="logo-name">Translation Engine</div>
+      <div class="logo-description">Mechanical translation gear</div>
+    </div>
+  </div>
+</body>
+</html>
