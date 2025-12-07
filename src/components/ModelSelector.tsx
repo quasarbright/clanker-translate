@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import Fuse from 'fuse.js';
 import type { Model } from '../types';
 import './ModelSelector.css';
 
@@ -16,19 +17,29 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Filter models based on search query
+  // Create Fuse instance for fuzzy search
+  const fuse = useMemo(() => {
+    return new Fuse(models, {
+      keys: [
+        { name: 'name', weight: 2 },  // Prioritize name matches
+        { name: 'id', weight: 1 }     // Secondary priority for ID
+      ],
+      threshold: 0.4,  // More lenient matching (0 = exact, 1 = match anything)
+      ignoreLocation: true,  // Don't care where in the string the match is
+      minMatchCharLength: 2,  // Minimum characters to match
+      includeScore: true,
+    });
+  }, [models]);
+
+  // Filter models based on search query using Fuse.js
   const filteredModels = useMemo(() => {
     if (!searchQuery.trim()) {
       return models;
     }
-    const query = searchQuery.toLowerCase();
-    return models.filter(
-      (model) =>
-        model.name.toLowerCase().includes(query) ||
-        model.id.toLowerCase().includes(query) ||
-        (model.description && model.description.toLowerCase().includes(query))
-    );
-  }, [models, searchQuery]);
+    
+    const results = fuse.search(searchQuery);
+    return results.map(result => result.item);
+  }, [fuse, models, searchQuery]);
 
   // Get the selected model object
   const selectedModelObj = models.find((m) => m.id === selectedModel);

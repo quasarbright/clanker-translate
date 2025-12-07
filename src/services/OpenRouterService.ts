@@ -86,14 +86,16 @@ Return ONLY a valid JSON object with the following structure (no markdown, no ex
 {
   "translation": "the translated text in the target language",
   "explanation": "explanation of translation choices, ambiguities, and cultural notes (ALWAYS in English)",
-  "transcription": "phonetic transcription of the SOURCE text if source and target use different writing systems (omit if not applicable)"
+  "transcription": "romanized transcription of the TRANSLATED text if source and target language use different writing systems (omit if not applicable)"
 }
 
 IMPORTANT:
 - The "explanation" field must ALWAYS be written in English, regardless of source or target language
-- The "transcription" field should be a phonetic transcription of the SOURCE (original) text, not the translation
+- The "transcription" field should be a ROMANIZATION of the TRANSLATED (destination) text, NOT IPA phonetic symbols. Ex: "こんにちは" should be transcribed as "konnichiwa"
+- Use standard romanization systems: romaji for Japanese, pinyin for Chinese, etc.
+- Do NOT use IPA symbols like ə, ʊ, ˈ - use simple Latin letters only
 - Ensure the JSON is complete and properly formatted
-- Keep explanations concise but informative`;
+- Keep explanations concise but informative. Do not mention transcription in the explanation, explanation should just be an explanation of the translation itself.`;
   }
 
   /**
@@ -254,22 +256,22 @@ IMPORTANT:
 
     // Request transcription if languages use different writing systems
     if (needsTranscription(request.fromLanguage, request.toLanguage)) {
-      prompt += `\n\nPlease include a phonetic transcription of the SOURCE text (the original ${request.fromLanguage} text)`;
+      prompt += `\n\nPlease include a ROMANIZATION of the TRANSLATED text (the translated ${request.toLanguage} text)`;
       
       // Add specific transcription format based on source language
       if (request.fromLanguage === 'ja') {
-        prompt += ' in romaji';
+        prompt += ' using romaji (e.g., "konnichiwa" not "kõ̞nːit͡ɕiɰᵝa̠")';
       } else if (request.fromLanguage === 'zh' || request.fromLanguage === 'zh-CN' || request.fromLanguage === 'zh-TW') {
-        prompt += ' in pinyin';
+        prompt += ' using pinyin with tone marks (e.g., "nǐ hǎo")';
       } else if (request.fromLanguage === 'ko') {
-        prompt += ' in romanized Korean';
+        prompt += ' using revised romanization (e.g., "annyeonghaseyo")';
       } else if (request.fromLanguage === 'ar') {
-        prompt += ' in romanized Arabic';
+        prompt += ' using simple Latin letters (e.g., "marhaban")';
       } else if (request.fromLanguage === 'ru') {
-        prompt += ' in romanized Russian';
+        prompt += ' using simple Latin letters (e.g., "privet")';
       }
       
-      prompt += '.';
+      prompt += '. Use ONLY Latin letters (a-z), NO IPA symbols.';
     }
 
     prompt += '\n\nRemember: Write the explanation in English.';

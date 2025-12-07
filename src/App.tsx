@@ -38,9 +38,11 @@ function App() {
         if (storedModel && models.some(m => m.id === storedModel)) {
           setSelectedModel(storedModel);
         } else if (models.length > 0) {
-          // Otherwise, default to first available model
-          setSelectedModel(models[0].id);
-          StorageService.setSelectedModel(models[0].id);
+          // Prefer Claude 3.5 Haiku as default for speed and quality
+          const preferredModel = models.find(m => m.id === 'anthropic/claude-3.5-haiku');
+          const defaultModel = preferredModel || models[0];
+          setSelectedModel(defaultModel.id);
+          StorageService.setSelectedModel(defaultModel.id);
         }
       } catch (error) {
         console.error('Failed to fetch models:', error);
