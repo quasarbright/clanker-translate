@@ -1,73 +1,98 @@
-# React + TypeScript + Vite
+# Clanker Translate
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, AI-powered translation web application built with React, TypeScript, and Vite. Translate text between multiple languages using OpenRouter's AI models.
 
-Currently, two official plugins are available:
+🌐 **Live Demo:** [https://quasarbright.github.io/clanker-translate](https://quasarbright.github.io/clanker-translate)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- 🌍 Support for 11 languages including English, Japanese, Spanish, French, German, Chinese, Korean, Arabic, Russian, and Portuguese
+- 🤖 Multiple AI models via OpenRouter (GPT-4, GPT-3.5, Claude, etc.)
+- 📝 Context-aware translations with explanations
+- 🔤 Phonetic transcriptions for different writing systems
+- 📱 Fully responsive design (mobile, tablet, desktop)
+- 🎨 Dark theme optimized for readability
+- 💾 Local storage for API keys and preferences
+- ♿ WCAG 2.1 Level AA accessibility compliant
+- 🔒 Secure with Content Security Policy
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 20.19+ or 22.12+
+- An OpenRouter API key ([Get one here](https://openrouter.ai/keys))
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# Clone the repository
+git clone https://github.com/quasarbright/clanker-translate.git
+cd clanker-translate
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Building for Production
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
 ```
+
+The built files will be in the `dist` directory.
+
+## Deployment
+
+```bash
+npm run deploy
+```
+
+Will deploy to github pages
+
+## Development
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+### Project Structure
+
+```
+src/
+├── components/       # React components
+├── services/        # API and storage services
+├── constants/       # Language definitions and constants
+├── types/          # TypeScript type definitions
+├── utils/          # Utility functions
+└── __tests__/      # Test files
+```
+
+## Tech Stack
+
+- **React 18** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Vitest** - Testing framework
+- **React Testing Library** - Component testing
+- **OpenRouter API** - AI translation backend
+
+## License
+
+MIT
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
