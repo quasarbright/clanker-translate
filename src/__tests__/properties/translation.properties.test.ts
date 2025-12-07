@@ -102,7 +102,7 @@ describe('Translation Property Tests', () => {
           expect(body.model).toBe(model);
           expect(body).toHaveProperty('messages');
           expect(body.temperature).toBe(0.3);
-          expect(body.max_tokens).toBe(1000);
+          expect(body.max_tokens).toBe(4000);
           
           // Verify messages array structure
           expect(Array.isArray(body.messages)).toBe(true);

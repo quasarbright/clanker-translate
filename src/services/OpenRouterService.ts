@@ -282,7 +282,7 @@ IMPORTANT:
    * @param content The content string from the API response
    * @returns Parsed TranslationResponse
    */
-  private static parseTranslationResponse(content: string): TranslationResponse {
+  static parseTranslationResponse(content: string): TranslationResponse {
     try {
       // Remove markdown code blocks if present (```json ... ```)
       let cleanContent = content.trim();

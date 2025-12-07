@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import fc from 'fast-check';
 import { StorageService } from '../../services/StorageService';
-import { LanguagePrefs } from '../../types';
+import type { LanguagePrefs } from '../../types';
 
 describe('Storage Property Tests', () => {
   beforeEach(() => {

@@ -4,16 +4,10 @@ import { InputPanel } from '../InputPanel';
 
 describe('InputPanel', () => {
   const mockOnChange = vi.fn();
-  const mockOnPaste = vi.fn();
-  const mockOnCopy = vi.fn();
-  const mockOnClear = vi.fn();
 
   const defaultProps = {
     value: '',
     onChange: mockOnChange,
-    onPaste: mockOnPaste,
-    onCopy: mockOnCopy,
-    onClear: mockOnClear,
     maxLength: 5000,
   };
 
@@ -151,131 +145,6 @@ describe('InputPanel', () => {
     });
   });
 
-  describe('Paste button functionality', () => {
-    it('should render paste button', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const pasteButton = screen.getByLabelText('Paste from clipboard');
-      expect(pasteButton).toBeInTheDocument();
-      expect(pasteButton).toHaveTextContent('Paste');
-    });
-
-    it('should call onPaste when paste button is clicked', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const pasteButton = screen.getByLabelText('Paste from clipboard');
-      fireEvent.click(pasteButton);
-
-      expect(mockOnPaste).toHaveBeenCalledTimes(1);
-    });
-
-    it('should call onPaste multiple times when clicked multiple times', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const pasteButton = screen.getByLabelText('Paste from clipboard');
-      fireEvent.click(pasteButton);
-      fireEvent.click(pasteButton);
-      fireEvent.click(pasteButton);
-
-      expect(mockOnPaste).toHaveBeenCalledTimes(3);
-    });
-
-    it('should not call other handlers when paste is clicked', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const pasteButton = screen.getByLabelText('Paste from clipboard');
-      fireEvent.click(pasteButton);
-
-      expect(mockOnPaste).toHaveBeenCalledTimes(1);
-      expect(mockOnCopy).not.toHaveBeenCalled();
-      expect(mockOnClear).not.toHaveBeenCalled();
-      expect(mockOnChange).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Copy button functionality', () => {
-    it('should render copy button', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const copyButton = screen.getByLabelText('Copy input text');
-      expect(copyButton).toBeInTheDocument();
-      expect(copyButton).toHaveTextContent('Copy');
-    });
-
-    it('should call onCopy when copy button is clicked', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const copyButton = screen.getByLabelText('Copy input text');
-      fireEvent.click(copyButton);
-
-      expect(mockOnCopy).toHaveBeenCalledTimes(1);
-    });
-
-    it('should call onCopy multiple times when clicked multiple times', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const copyButton = screen.getByLabelText('Copy input text');
-      fireEvent.click(copyButton);
-      fireEvent.click(copyButton);
-
-      expect(mockOnCopy).toHaveBeenCalledTimes(2);
-    });
-
-    it('should not call other handlers when copy is clicked', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const copyButton = screen.getByLabelText('Copy input text');
-      fireEvent.click(copyButton);
-
-      expect(mockOnCopy).toHaveBeenCalledTimes(1);
-      expect(mockOnPaste).not.toHaveBeenCalled();
-      expect(mockOnClear).not.toHaveBeenCalled();
-      expect(mockOnChange).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Clear button functionality', () => {
-    it('should render clear button', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const clearButton = screen.getByLabelText('Clear input text');
-      expect(clearButton).toBeInTheDocument();
-      expect(clearButton).toHaveTextContent('Clear');
-    });
-
-    it('should call onClear when clear button is clicked', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const clearButton = screen.getByLabelText('Clear input text');
-      fireEvent.click(clearButton);
-
-      expect(mockOnClear).toHaveBeenCalledTimes(1);
-    });
-
-    it('should call onClear multiple times when clicked multiple times', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const clearButton = screen.getByLabelText('Clear input text');
-      fireEvent.click(clearButton);
-      fireEvent.click(clearButton);
-      fireEvent.click(clearButton);
-
-      expect(mockOnClear).toHaveBeenCalledTimes(3);
-    });
-
-    it('should not call other handlers when clear is clicked', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const clearButton = screen.getByLabelText('Clear input text');
-      fireEvent.click(clearButton);
-
-      expect(mockOnClear).toHaveBeenCalledTimes(1);
-      expect(mockOnPaste).not.toHaveBeenCalled();
-      expect(mockOnCopy).not.toHaveBeenCalled();
-      expect(mockOnChange).not.toHaveBeenCalled();
-    });
-  });
-
   describe('Controlled component behavior', () => {
     it('should reflect prop changes in textarea', () => {
       const { rerender } = render(
@@ -310,29 +179,4 @@ describe('InputPanel', () => {
     });
   });
 
-  describe('Button interactions', () => {
-    it('should render all three action buttons', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      expect(screen.getByLabelText('Paste from clipboard')).toBeInTheDocument();
-      expect(screen.getByLabelText('Copy input text')).toBeInTheDocument();
-      expect(screen.getByLabelText('Clear input text')).toBeInTheDocument();
-    });
-
-    it('should handle clicking buttons in sequence', () => {
-      render(<InputPanel {...defaultProps} />);
-
-      const pasteButton = screen.getByLabelText('Paste from clipboard');
-      const copyButton = screen.getByLabelText('Copy input text');
-      const clearButton = screen.getByLabelText('Clear input text');
-
-      fireEvent.click(pasteButton);
-      fireEvent.click(copyButton);
-      fireEvent.click(clearButton);
-
-      expect(mockOnPaste).toHaveBeenCalledTimes(1);
-      expect(mockOnCopy).toHaveBeenCalledTimes(1);
-      expect(mockOnClear).toHaveBeenCalledTimes(1);
-    });
-  });
 });

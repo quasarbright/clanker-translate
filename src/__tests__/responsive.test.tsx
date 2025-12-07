@@ -54,9 +54,6 @@ describe('Responsive Design', () => {
 
       const panelsContainer = document.querySelector('.panels-container');
       expect(panelsContainer).toBeTruthy();
-
-      // Check computed styles
-      const styles = window.getComputedStyle(panelsContainer!);
       
       // On mobile, grid should be single column
       // We verify the component renders without errors
@@ -80,11 +77,11 @@ describe('Responsive Design', () => {
         />
       );
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      expect(translateButton).toBeInTheDocument();
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      expect(translateButtons[0]).toBeInTheDocument();
       
       // Verify button exists and is rendered
-      expect(translateButton).toBeTruthy();
+      expect(translateButtons[0]).toBeTruthy();
     });
 
     it('should rotate swap button 90 degrees on mobile', () => {
@@ -229,8 +226,8 @@ describe('Responsive Design', () => {
         />
       );
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      expect(translateButton).toBeInTheDocument();
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      expect(translateButtons[0]).toBeInTheDocument();
     });
   });
 

@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ApiKeyGate } from '../components/ApiKeyGate';
@@ -63,9 +63,6 @@ describe('Accessibility Tests', () => {
       const props = {
         value: '',
         onChange: vi.fn(),
-        onPaste: vi.fn(),
-        onCopy: vi.fn(),
-        onClear: vi.fn(),
         maxLength: 5000,
       };
 
@@ -74,11 +71,6 @@ describe('Accessibility Tests', () => {
       // Textarea should have label - use role to be more specific
       const textarea = screen.getByRole('textbox', { name: /input text/i });
       expect(textarea).toBeInTheDocument();
-
-      // Action buttons should have ARIA labels
-      expect(screen.getByRole('button', { name: /paste from clipboard/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /copy input text/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /clear input text/i })).toBeInTheDocument();
 
       // Character counter should have aria-live
       const counter = screen.getByText(/0 \/ 5000/);
@@ -171,8 +163,8 @@ describe('Accessibility Tests', () => {
       render(<TranslationInterface {...props} />);
 
       // Translate button should have ARIA label
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
-      expect(translateButton).toBeInTheDocument();
+      const translateButtons = screen.getAllByRole('button', { name: /translate text/i });
+      expect(translateButtons.length).toBeGreaterThan(0);
     });
   });
 
@@ -229,9 +221,6 @@ describe('Accessibility Tests', () => {
       const props = {
         value: '',
         onChange: vi.fn(),
-        onPaste: vi.fn(),
-        onCopy: vi.fn(),
-        onClear: vi.fn(),
         maxLength: 5000,
       };
 
@@ -241,16 +230,6 @@ describe('Accessibility Tests', () => {
       await user.tab();
       const textarea = screen.getByRole('textbox', { name: /input text/i });
       expect(textarea).toHaveFocus();
-
-      // Tab to buttons
-      await user.tab();
-      expect(screen.getByRole('button', { name: /paste from clipboard/i })).toHaveFocus();
-
-      await user.tab();
-      expect(screen.getByRole('button', { name: /copy input text/i })).toHaveFocus();
-
-      await user.tab();
-      expect(screen.getByRole('button', { name: /clear input text/i })).toHaveFocus();
     });
 
     it('SettingsPanel supports keyboard navigation', async () => {
@@ -309,29 +288,26 @@ describe('Accessibility Tests', () => {
 
     it('Buttons can be activated with Space key', async () => {
       const user = userEvent.setup();
-      const onClear = vi.fn();
+      const onSwap = vi.fn();
       const props = {
-        value: 'test',
-        onChange: vi.fn(),
-        onPaste: vi.fn(),
-        onCopy: vi.fn(),
-        onClear,
-        maxLength: 5000,
+        fromLanguage: 'en',
+        toLanguage: 'ja',
+        onFromChange: vi.fn(),
+        onToChange: vi.fn(),
+        onSwap,
       };
 
-      render(<InputPanel {...props} />);
+      render(<LanguageSelector {...props} />);
 
-      // Tab to clear button
+      // Tab to swap button
       await user.tab();
       await user.tab();
-      await user.tab();
-      await user.tab();
-      const clearButton = screen.getByRole('button', { name: /clear input text/i });
-      expect(clearButton).toHaveFocus();
+      const swapButton = screen.getByRole('button', { name: /swap languages/i });
+      expect(swapButton).toHaveFocus();
 
       // Press Space
       await user.keyboard(' ');
-      expect(onClear).toHaveBeenCalled();
+      expect(onSwap).toHaveBeenCalled();
     });
   });
 
@@ -395,7 +371,7 @@ describe('Accessibility Tests', () => {
         onSwap: vi.fn(),
       };
 
-      const { container } = render(<LanguageSelector {...props} />);
+      render(<LanguageSelector {...props} />);
 
       // Check that focus styles are defined (this is a basic check)
       // In a real scenario, you'd check computed styles
@@ -449,8 +425,8 @@ describe('Accessibility Tests', () => {
 
       render(<TranslationInterface {...props} />);
 
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
-      expect(translateButton).toBeDisabled();
+      const translateButtons = screen.getAllByRole('button', { name: /translate text/i });
+      translateButtons.forEach(button => expect(button).toBeDisabled());
     });
   });
 

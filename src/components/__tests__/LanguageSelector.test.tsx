@@ -72,11 +72,12 @@ describe('LanguageSelector', () => {
       expect(swapButton).toHaveTextContent('⇄');
     });
 
-    it('should render labels for dropdowns', () => {
+    it('should render dropdowns without labels', () => {
       render(<LanguageSelector {...defaultProps} />);
 
-      expect(screen.getByText('From')).toBeInTheDocument();
-      expect(screen.getByText('To')).toBeInTheDocument();
+      // Labels should not be present in the new design
+      expect(screen.queryByText('From')).not.toBeInTheDocument();
+      expect(screen.queryByText('To')).not.toBeInTheDocument();
     });
   });
 

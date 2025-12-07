@@ -18,17 +18,11 @@ describe('Performance Tests', () => {
       const mockOnChange = vi.fn((text: string) => {
         currentValue = text;
       });
-      const mockOnPaste = vi.fn();
-      const mockOnCopy = vi.fn();
-      const mockOnClear = vi.fn();
 
       const { rerender } = render(
         <InputPanel
           value={currentValue}
           onChange={mockOnChange}
-          onPaste={mockOnPaste}
-          onCopy={mockOnCopy}
-          onClear={mockOnClear}
           maxLength={5000}
         />
       );
@@ -43,9 +37,6 @@ describe('Performance Tests', () => {
         <InputPanel
           value="Hello World"
           onChange={mockOnChange}
-          onPaste={mockOnPaste}
-          onCopy={mockOnCopy}
-          onClear={mockOnClear}
           maxLength={5000}
         />
       );
@@ -71,9 +62,6 @@ describe('Performance Tests', () => {
         <InputPanel
           value=""
           onChange={mockOnChange}
-          onPaste={vi.fn()}
-          onCopy={vi.fn()}
-          onClear={vi.fn()}
           maxLength={5000}
         />
       );
@@ -128,14 +116,14 @@ describe('Performance Tests', () => {
       );
 
       const textarea = screen.getByRole('textbox', { name: /input text/i });
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButtons = screen.getAllByRole('button', { name: /translate text/i });
 
       // Enter text
       await user.type(textarea, 'Hello');
 
       // Click translate button twice quickly
-      await user.click(translateButton);
-      await user.click(translateButton);
+      await user.click(translateButtons[0]);
+      await user.click(translateButtons[0]);
 
       // Wait for any pending operations
       await waitFor(() => {

@@ -1,6 +1,6 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { StorageService } from '../StorageService';
-import { LanguagePrefs } from '../../types';
+import type { LanguagePrefs } from '../../types';
 
 describe('StorageService', () => {
   beforeEach(() => {

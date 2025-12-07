@@ -82,7 +82,7 @@ describe('Property 6: Error Message Display', () => {
   it('should handle string errors without exposing sensitive information', () => {
     fc.assert(
       fc.property(
-        fc.string({ minLength: 1, maxLength: 200 }),
+        fc.string({ minLength: 1, maxLength: 200 }).filter(s => s.trim().length > 0),
         (errorMessage) => {
           const { container } = render(<ErrorBanner error={errorMessage} />);
           const errorBanner = container.querySelector('.error-banner');

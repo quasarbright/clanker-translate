@@ -232,7 +232,7 @@ describe('OpenRouterService', () => {
       const userPrompt = OpenRouterService.buildUserPrompt(request);
       
       expect(userPrompt).toContain('transcription');
-      expect(userPrompt).toContain('romaji');
+      expect(userPrompt).toContain('SOURCE text');
     });
 
     it('should not request transcription when languages use same writing system', () => {

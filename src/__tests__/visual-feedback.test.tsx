@@ -45,8 +45,8 @@ describe('Visual Feedback Tests', () => {
       const textarea = screen.getByLabelText('Input text');
       await userEvent.type(textarea, 'Hello');
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await userEvent.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await userEvent.click(translateButtons[0]);
 
       await waitFor(() => {
         const outputContent = container.querySelector('.output-content');
@@ -61,17 +61,14 @@ describe('Visual Feedback Tests', () => {
         <InputPanel
           value="test"
           onChange={vi.fn()}
-          onPaste={vi.fn()}
-          onCopy={vi.fn()}
-          onClear={vi.fn()}
           maxLength={5000}
         />
       );
 
-      const pasteButton = screen.getByRole('button', { name: /paste/i });
-      // Check that the button has the expected class for hover styling
-      expect(pasteButton).toHaveClass('action-button');
-      expect(pasteButton).toBeInTheDocument();
+      const textarea = screen.getByLabelText('Input text');
+      // Check that the textarea has the expected class for hover styling
+      expect(textarea).toHaveClass('input-textarea');
+      expect(textarea).toBeInTheDocument();
     });
 
     it('should have hover styles for translate button', () => {
@@ -86,10 +83,10 @@ describe('Visual Feedback Tests', () => {
         />
       );
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
       // Check that the button has the expected class for hover styling
-      expect(translateButton).toHaveClass('translate-button');
-      expect(translateButton).toBeInTheDocument();
+      expect(translateButtons[0]).toHaveClass('translate-button');
+      expect(translateButtons[0]).toBeInTheDocument();
     });
   });
 
@@ -99,9 +96,6 @@ describe('Visual Feedback Tests', () => {
         <InputPanel
           value=""
           onChange={vi.fn()}
-          onPaste={vi.fn()}
-          onCopy={vi.fn()}
-          onClear={vi.fn()}
           maxLength={5000}
         />
       );
@@ -119,18 +113,15 @@ describe('Visual Feedback Tests', () => {
         <InputPanel
           value="test"
           onChange={vi.fn()}
-          onPaste={vi.fn()}
-          onCopy={vi.fn()}
-          onClear={vi.fn()}
           maxLength={5000}
         />
       );
 
-      const pasteButton = screen.getByRole('button', { name: /paste/i });
+      const textarea = screen.getByLabelText('Input text');
       await userEvent.tab(); // Focus first element
       
       // Check that focus styles are defined
-      expect(pasteButton).toHaveClass('action-button');
+      expect(textarea).toHaveClass('input-textarea');
     });
   });
 
@@ -159,16 +150,16 @@ describe('Visual Feedback Tests', () => {
       const textarea = screen.getByLabelText('Input text');
       await userEvent.type(textarea, 'Hello');
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await userEvent.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await userEvent.click(translateButtons[0]);
 
       // Check for loading state
-      expect(screen.getByText(/translating/i)).toBeInTheDocument();
+      expect(screen.getAllByText(/translating/i).length).toBeGreaterThan(0);
       
       // Check for spinner element
-      const spinner = screen.getByRole('button', { name: /translate/i });
-      expect(spinner).toHaveClass('translate-button');
-      expect(spinner).toHaveTextContent('Translating...');
+      const buttons = screen.getAllByRole('button', { name: /translate/i });
+      expect(buttons[0]).toHaveClass('translate-button');
+      expect(buttons[0]).toHaveTextContent('Translating...');
     });
 
     it('should have spinner animation class when loading', async () => {
@@ -195,8 +186,8 @@ describe('Visual Feedback Tests', () => {
       const textarea = screen.getByLabelText('Input text');
       await userEvent.type(textarea, 'Hello');
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await userEvent.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await userEvent.click(translateButtons[0]);
 
       // Check that loading spinner is present
       await waitFor(() => {
@@ -219,10 +210,10 @@ describe('Visual Feedback Tests', () => {
         />
       );
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
       // Check that button is disabled (CSS will handle opacity)
-      expect(translateButton).toBeDisabled();
-      expect(translateButton).toHaveClass('translate-button');
+      expect(translateButtons[0]).toBeDisabled();
+      expect(translateButtons[0]).toHaveClass('translate-button');
     });
 
     it('should reduce opacity for disabled copy button', () => {

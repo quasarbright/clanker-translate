@@ -210,8 +210,8 @@ describe('End-to-End Integration Tests', () => {
       await user.type(contextTextarea, 'Casual greeting');
 
       // Step 4: Click translate button
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       // Step 5: Should call translation service
       await waitFor(() => {
@@ -268,8 +268,8 @@ describe('End-to-End Integration Tests', () => {
       await user.type(inputTextarea, 'Hello');
 
       // Translate
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       // Should call translate without context
       await waitFor(() => {
@@ -320,8 +320,8 @@ describe('End-to-End Integration Tests', () => {
       await user.type(inputTextarea, 'こんにちは');
 
       // Translate
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       // Should use 'auto' as fromLanguage
       await waitFor(() => {
@@ -345,13 +345,13 @@ describe('End-to-End Integration Tests', () => {
       );
 
       await waitFor(() => {
-        expect(screen.getByRole('button', { name: /translate/i })).toBeInTheDocument();
+        expect(screen.getAllByRole('button', { name: /translate/i }).length).toBeGreaterThan(0);
       });
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
       
       // Should be disabled with empty input
-      expect(translateButton).toBeDisabled();
+      expect(translateButtons[0]).toBeDisabled();
     });
 
     it('should disable translate button for whitespace-only input', async () => {
@@ -373,10 +373,10 @@ describe('End-to-End Integration Tests', () => {
       const inputTextarea = screen.getByPlaceholderText(/enter text to translate/i);
       await user.type(inputTextarea, '   \n\t  ');
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
       
       // Should be disabled with whitespace-only input
-      expect(translateButton).toBeDisabled();
+      expect(translateButtons[0]).toBeDisabled();
     });
   });
 
@@ -565,8 +565,8 @@ describe('End-to-End Integration Tests', () => {
       const inputTextarea = screen.getByPlaceholderText(/enter text to translate/i);
       await user.type(inputTextarea, 'Hello');
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       // Should display auth error (check for authentication-related message)
       await waitFor(() => {
@@ -599,8 +599,8 @@ describe('End-to-End Integration Tests', () => {
       const inputTextarea = screen.getByPlaceholderText(/enter text to translate/i);
       await user.type(inputTextarea, 'Hello');
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       // Should display rate limit error
       await waitFor(() => {
@@ -632,8 +632,8 @@ describe('End-to-End Integration Tests', () => {
       const inputTextarea = screen.getByPlaceholderText(/enter text to translate/i);
       await user.type(inputTextarea, 'Hello');
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       // Should display network error
       await waitFor(() => {
@@ -666,8 +666,8 @@ describe('End-to-End Integration Tests', () => {
       const inputTextarea = screen.getByPlaceholderText(/enter text to translate/i);
       await user.type(inputTextarea, 'Hello');
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       // Should show error
       await waitFor(() => {
@@ -679,7 +679,7 @@ describe('End-to-End Integration Tests', () => {
         translation: 'Bonjour',
       });
 
-      await user.click(translateButton);
+      await user.click(translateButtons[0]);
 
       // Error should be cleared
       await waitFor(() => {
@@ -747,17 +747,17 @@ describe('End-to-End Integration Tests', () => {
       const inputTextarea = screen.getByPlaceholderText(/enter text to translate/i);
       await user.type(inputTextarea, 'Hello');
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
       
       // First attempt
-      await user.click(translateButton);
+      await user.click(translateButtons[0]);
 
       await waitFor(() => {
         expect(screen.getByText(/network error/i)).toBeInTheDocument();
       });
 
       // Retry
-      await user.click(translateButton);
+      await user.click(translateButtons[0]);
 
       // Should succeed
       await waitFor(() => {
@@ -804,8 +804,8 @@ describe('End-to-End Integration Tests', () => {
       await user.click(inputTextarea);
       await user.paste(longText);
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       // Should handle long text
       await waitFor(() => {
@@ -844,8 +844,8 @@ describe('End-to-End Integration Tests', () => {
       await user.click(inputTextarea);
       await user.paste(specialText);
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       // Should handle special characters
       await waitFor(() => {
@@ -883,8 +883,8 @@ describe('End-to-End Integration Tests', () => {
       const inputTextarea = screen.getByPlaceholderText(/enter text to translate/i);
       await user.type(inputTextarea, unicodeText);
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       // Should handle unicode
       await waitFor(() => {
@@ -930,8 +930,8 @@ describe('End-to-End Integration Tests', () => {
       const inputTextarea = screen.getByPlaceholderText(/enter text to translate/i);
       await user.type(inputTextarea, 'Hello');
 
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       // Should handle empty translation
       await waitFor(() => {
@@ -968,15 +968,22 @@ describe('End-to-End Integration Tests', () => {
       const user = userEvent.setup();
       const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
-      // Mock clipboard failure by replacing the mock
-      const mockReadText = vi.fn().mockRejectedValue(new Error('Clipboard access denied'));
+      // Mock clipboard failure
+      const mockWriteText = vi.fn().mockRejectedValue(new Error('Clipboard access denied'));
       Object.defineProperty(navigator, 'clipboard', {
         value: {
-          readText: mockReadText,
-          writeText: vi.fn(),
+          readText: vi.fn(),
+          writeText: mockWriteText,
         },
         writable: true,
         configurable: true,
+      });
+
+      const { OpenRouterService } = await import('../services/OpenRouterService');
+      vi.mocked(OpenRouterService.translate).mockResolvedValue({
+        translation: 'Test translation',
+        explanation: 'Test explanation',
+        transcription: '',
       });
 
       render(
@@ -988,18 +995,26 @@ describe('End-to-End Integration Tests', () => {
         />
       );
 
+      // Enter text and translate
+      const textarea = screen.getByLabelText('Input text');
+      await user.type(textarea, 'Hello');
+      
+      const translateButtons = screen.getAllByRole('button', { name: /translate text/i });
+      await user.click(translateButtons[0]);
+
+      // Wait for translation
       await waitFor(() => {
-        expect(screen.getByRole('button', { name: /paste/i })).toBeInTheDocument();
+        expect(screen.getByText('Test translation')).toBeInTheDocument();
       });
 
-      // Try to paste
-      const pasteButton = screen.getByRole('button', { name: /paste/i });
-      await user.click(pasteButton);
+      // Try to copy (which will fail)
+      const copyButton = screen.getByRole('button', { name: /copy translation/i });
+      await user.click(copyButton);
 
       // Should log error but not crash
       await waitFor(() => {
         expect(consoleErrorSpy).toHaveBeenCalledWith(
-          'Failed to read clipboard:',
+          'Failed to copy:',
           expect.any(Error)
         );
       });
@@ -1020,17 +1035,15 @@ describe('End-to-End Integration Tests', () => {
       vi.clearAllMocks();
     });
 
-    it('should support copy-paste workflow', async () => {
+    it('should support copy workflow', async () => {
       const user = userEvent.setup();
       
       // Mock clipboard
-      const clipboardText = 'Text from clipboard';
-      const mockReadText = vi.fn().mockResolvedValue(clipboardText);
       const mockWriteText = vi.fn().mockResolvedValue(undefined);
       
       Object.defineProperty(navigator, 'clipboard', {
         value: {
-          readText: mockReadText,
+          readText: vi.fn(),
           writeText: mockWriteText,
         },
         writable: true,
@@ -1050,32 +1063,21 @@ describe('End-to-End Integration Tests', () => {
         />
       );
 
-      await waitFor(() => {
-        expect(screen.getByRole('button', { name: /paste/i })).toBeInTheDocument();
-      });
-
-      // Paste text
-      const pasteButton = screen.getByRole('button', { name: /paste/i });
-      await user.click(pasteButton);
-
-      // Verify text was pasted
-      await waitFor(() => {
-        const inputTextarea = screen.getByPlaceholderText(/enter text to translate/i);
-        expect(inputTextarea).toHaveValue(clipboardText);
-      });
+      // Type text manually (no paste button anymore)
+      const inputTextarea = screen.getByPlaceholderText(/enter text to translate/i);
+      await user.type(inputTextarea, 'Hello world');
 
       // Translate
-      const translateButton = screen.getByRole('button', { name: /translate/i });
-      await user.click(translateButton);
+      const translateButtons = screen.getAllByRole('button', { name: /translate/i });
+      await user.click(translateButtons[0]);
 
       await waitFor(() => {
         expect(screen.getByText('Translated text')).toBeInTheDocument();
       });
 
       // Copy output
-      const copyButtons = screen.getAllByRole('button', { name: /copy/i });
-      const copyOutputButton = copyButtons.find(btn => !btn.closest('.input-panel'));
-      await user.click(copyOutputButton!);
+      const copyButton = screen.getByRole('button', { name: /copy translation/i });
+      await user.click(copyButton);
 
       // Verify copy was called
       expect(mockWriteText).toHaveBeenCalledWith('Translated text');
@@ -1101,9 +1103,8 @@ describe('End-to-End Integration Tests', () => {
       const inputTextarea = screen.getByPlaceholderText(/enter text to translate/i);
       await user.type(inputTextarea, 'First text');
 
-      // Clear
-      const clearButton = screen.getByRole('button', { name: /clear/i });
-      await user.click(clearButton);
+      // Clear manually (no clear button anymore)
+      await user.clear(inputTextarea);
 
       // Input should be empty
       expect(inputTextarea).toHaveValue('');

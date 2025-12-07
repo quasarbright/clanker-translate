@@ -45,9 +45,6 @@ describe('TranslationInterface', () => {
 
       // Check for InputPanel
       expect(screen.getByRole('textbox', { name: /input text/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /paste from clipboard/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /copy input text/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /clear input text/i })).toBeInTheDocument();
 
       // Check for OutputPanel
       expect(screen.getByText(/translation will appear here/i)).toBeInTheDocument();
@@ -60,13 +57,13 @@ describe('TranslationInterface', () => {
       expect(screen.getByRole('button', { name: /toggle settings/i })).toBeInTheDocument();
 
       // Check for Translate button
-      expect(screen.getByRole('button', { name: /translate text/i })).toBeInTheDocument();
+      expect(screen.getAllByRole('button', { name: /translate text/i })[0]).toBeInTheDocument();
     });
 
     it('should render translate button as disabled when input is empty', () => {
       render(<TranslationInterface {...defaultProps} />);
 
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       expect(translateButton).toBeDisabled();
     });
 
@@ -77,7 +74,7 @@ describe('TranslationInterface', () => {
       const inputTextarea = screen.getByRole('textbox', { name: /input text/i });
       await user.type(inputTextarea, 'Hello world');
 
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       expect(translateButton).not.toBeDisabled();
     });
   });
@@ -99,7 +96,7 @@ describe('TranslationInterface', () => {
       await user.type(inputTextarea, 'Hello world');
 
       // Click translate
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       await user.click(translateButton);
 
       // Verify translate was called
@@ -136,13 +133,13 @@ describe('TranslationInterface', () => {
       await user.type(inputTextarea, 'Hello world');
 
       // Click translate
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       await user.click(translateButton);
 
       // Check loading state
       await waitFor(() => {
-        expect(screen.getByText(/translating/i)).toBeInTheDocument();
-        const translateButton = screen.getByRole('button', { name: /translate text/i });
+        expect(screen.getAllByText(/translating/i).length).toBeGreaterThan(0);
+        const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
         expect(translateButton).toBeDisabled();
       });
 
@@ -155,7 +152,7 @@ describe('TranslationInterface', () => {
 
       // Wait for loading to finish
       await waitFor(() => {
-        expect(screen.getByRole('button', { name: /translate text/i })).toBeInTheDocument();
+        expect(screen.getAllByRole('button', { name: /translate text/i })[0]).toBeInTheDocument();
       });
     });
 
@@ -175,7 +172,7 @@ describe('TranslationInterface', () => {
       await user.type(inputTextarea, 'Hello world');
 
       // Click translate
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       await user.click(translateButton);
 
       // Wait for translation to appear
@@ -201,7 +198,7 @@ describe('TranslationInterface', () => {
       await user.type(inputTextarea, 'Hello world');
 
       // Click translate
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       await user.click(translateButton);
 
       // Wait for error to appear
@@ -228,7 +225,7 @@ describe('TranslationInterface', () => {
       await user.type(inputTextarea, 'Hello world');
 
       // Click translate (will fail)
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       await user.click(translateButton);
 
       // Wait for error
@@ -260,7 +257,7 @@ describe('TranslationInterface', () => {
       await user.clear(inputTextarea);
 
       // Try to translate (button should be disabled, but test the validation)
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       expect(translateButton).toBeDisabled();
     });
 
@@ -275,7 +272,7 @@ describe('TranslationInterface', () => {
       await user.type(inputTextarea, '   ');
 
       // Button should be disabled for whitespace
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       expect(translateButton).toBeDisabled();
 
       // Verify translate was not called
@@ -294,7 +291,7 @@ describe('TranslationInterface', () => {
       await user.clear(inputTextarea);
 
       // Button should be disabled
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       expect(translateButton).toBeDisabled();
     });
 
@@ -306,17 +303,17 @@ describe('TranslationInterface', () => {
       
       // Test various whitespace patterns
       await user.type(inputTextarea, '   ');
-      let translateButton = screen.getByRole('button', { name: /translate text/i });
+      let translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       expect(translateButton).toBeDisabled();
 
       await user.clear(inputTextarea);
       await user.type(inputTextarea, '\t\t');
-      translateButton = screen.getByRole('button', { name: /translate text/i });
+      translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       expect(translateButton).toBeDisabled();
 
       await user.clear(inputTextarea);
       await user.type(inputTextarea, '\n\n');
-      translateButton = screen.getByRole('button', { name: /translate text/i });
+      translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       expect(translateButton).toBeDisabled();
     });
 
@@ -334,7 +331,7 @@ describe('TranslationInterface', () => {
       await user.type(inputTextarea, 'Hello world');
 
       // Button should be enabled (validation happens on click)
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       expect(translateButton).not.toBeDisabled();
 
       // Click translate
@@ -350,7 +347,7 @@ describe('TranslationInterface', () => {
     it('should disable translate button when input is empty', () => {
       render(<TranslationInterface {...defaultProps} />);
 
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       expect(translateButton).toBeDisabled();
     });
 
@@ -361,7 +358,7 @@ describe('TranslationInterface', () => {
       const inputTextarea = screen.getByRole('textbox', { name: /input text/i });
       await user.type(inputTextarea, '     ');
 
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       expect(translateButton).toBeDisabled();
     });
 
@@ -383,7 +380,7 @@ describe('TranslationInterface', () => {
       await user.type(inputTextarea, 'Hello world');
 
       // Click translate
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       await user.click(translateButton);
 
       // Button should be disabled during translation
@@ -407,7 +404,7 @@ describe('TranslationInterface', () => {
       render(<TranslationInterface {...defaultProps} />);
 
       const inputTextarea = screen.getByRole('textbox', { name: /input text/i });
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
 
       // Initially disabled
       expect(translateButton).toBeDisabled();
@@ -438,7 +435,7 @@ describe('TranslationInterface', () => {
       await user.type(contextTextarea, 'formal business setting');
 
       // Click translate
-      const translateButton = screen.getByRole('button', { name: /translate text/i });
+      const translateButton = screen.getAllByRole('button', { name: /translate text/i })[0];
       await user.click(translateButton);
 
       // Verify translate was called with context
